@@ -1,8 +1,18 @@
 {
   "name": "enverse",
   "version": "0.1.0",
+  "devEngines": {
+    "node": "4.x || 5.x || 6.x",
+    "npm": "2.x || 3.x"
+  },
   "description": "Environment check utilities for isomorphic(universal) js apps",
-  "main": "index.js",
+  "main": "lib/cjs/index",
+  "jsnext:main": "lib/es6/index",
+  "files": [
+    "package.json",
+    "lib",
+    "README"
+  ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:es",
     "build:cjs": "rimraf lib && cross-env BABEL_ENV=cjs && babel ./src -d lib/cjs --ignore **/*.spec.*",
