@@ -4,7 +4,22 @@
   "description": "Environment check utilities for isomorphic(universal) js apps",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build:cjs && npm run build:es",
+    "build:cjs": "rimraf lib && cross-env BABEL_ENV=cjs && babel ./src -d lib/cjs --ignore **/*.spec.*",
+    "build:es": "rimraf es6 && cross-env BABEL_ENV=es babel ./src -d lib/es6 --ignore **/*.spec.*",
+    "prebuild": "npm test",
+    "prepublish": "npm run build",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags",
+    "test": "npm run test:mocha",
+    "test:clean": "rimraf coverage .nyc_output",
+    "test:mocha": "mocha ./internals/test.setup.js ./src/*.spec.js --require babel-core/register",
+    "test:watch": "npm run test:mocha -- --watch --reporter=min",
+    "test:cover": "npm run test:clean && nyc npm run test:mocha -- --reporter=dot",
+    "test:cover:check": "nyc check-coverage --lines 95 --functions 95 --branches 95",
+    "test:cover:report": "nyc report --reporter=lcov",
+    "test:coverage": "npm run test:cover && npm run test:cover:report && npm run test:cover:check",
+    "test:coveralls": "npm run test:cover && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -30,11 +45,13 @@
     "babel-preset-es2015": "^6.18.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.14",
-    "cross-env": "^3.1.3",    
+    "cross-env": "^3.1.3",
     "fetch-mock": "^5.5.0",
     "istanbul": "^0.4.5",
     "jsdom": "^9.8.0",
     "mocha": "^3.1.2",
+    "nuc": "^0.3.2",
+    "nyc": "^8.3.2",
     "rimraf": "^2.5.4"
   }
 }
