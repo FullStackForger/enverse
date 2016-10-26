@@ -14,7 +14,9 @@ Object.defineProperty(enverse, 'has', {
         document: typeof document === 'object',
         navigator: typeof document === 'navigator',
         localStorage: typeof document === 'localStorage',
-        sessionStorage: typeof document === 'sessionStorage'
+        sessionStorage: typeof document === 'sessionStorage',
+        global: typeof document === 'global',
+        process: typeof document === 'process'
     }
 })
 
