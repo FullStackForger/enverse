@@ -1,0 +1,27 @@
+{
+  "name": "enverse",
+  "version": "1.0.0",
+  "description": "Environment check utilities for isomorphic(universal) js apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fullstackforger/enverse.git"
+  },
+  "keywords": [
+    "isomorphic",
+    "universal",
+    "utils",
+    "environment",
+    "is-browser",
+    "is-server"
+  ],
+  "author": "FullStackForger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fullstackforger/enverse/issues"
+  },
+  "homepage": "https://github.com/fullstackforger/enverse#readme"
+}
