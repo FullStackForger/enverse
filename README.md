@@ -30,7 +30,8 @@ if (env.is.browser) {
 
 ## Checks
 
-`everse` exposes 2 properties `is` and `has`
+Default `everse` object exposes `is` and `has` properties with following checks.
+All bellow keys return `Boolean` values.
 
 * `is.browser`
 * `is.server`
@@ -40,3 +41,10 @@ if (env.is.browser) {
 * `has.sessionStorage`
 * `has.global`
 * `has.process`
+
+## What next?
+
+There is no futher plan of action if you however have an idea please feel free to
+[submit an issue](https://github.com/fullstackforger/enverse/issues/new).
+
+### Enjoy!
