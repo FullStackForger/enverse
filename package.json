@@ -1,6 +1,6 @@
 {
   "name": "enverse",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "devEngines": {
     "node": "4.x || 5.x || 6.x",
     "npm": "2.x || 3.x"
