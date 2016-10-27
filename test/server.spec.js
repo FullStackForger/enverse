@@ -21,7 +21,6 @@ describe('on the server', () => {
 		expect(env.has.navigator).to.be.false
 	})
 
-
 	it('should not have localStorage', () => {
 		expect(env.has.localStorage).to.be.false
 	})
