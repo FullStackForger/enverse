@@ -4,7 +4,7 @@ import jsdom from 'jsdom'
 
 describe('on the server', () => {
 
-	it('should detect detect', () => {
+	it('should detect', () => {
 		expect(env.is.server).to.be.true
 		expect(env.is.browser).to.be.false
 	})

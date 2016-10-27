@@ -32,7 +32,7 @@ describe('in the browser', () => {
 		env = evaluate.call(windowMock)
 	})
 
-	it('should detect detect', () => {
+	it('should detect', () => {
 		expect(env.is.server).to.be.false
 		expect(env.is.browser).to.be.true
 	})
