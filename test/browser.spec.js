@@ -1,17 +1,15 @@
 import {expect} from 'chai'
 import jsdom from 'jsdom'
+import {evaluate} from '../src/'
 
 const storage = {}
 
 describe('in the browser', () => {
-	var env
+	let env
 
-	before(() => {
-		global.document = jsdom.jsdom('<!doctype html><html><body></body></html>')
-		global.window = document.defaultView
-		global.navigator = { userAgent: 'node.js' }
-		global.localStorage = global.localStorage = storage
-		window.localStorage = window.sessionStorage = storage
+	// using function to preserve the scope for evaluate call
+	before(function() {
+
 		const storage = {
         getItem: function (key) {
             return this[key];
@@ -20,8 +18,18 @@ describe('in the browser', () => {
             this[key] = value;
         }
     }
-		delete require.cache[require.resolve('../src/index')]
-		env = require('../src/index').default
+		const document = jsdom.jsdom('<!doctype html><html><body></body></html>')
+		const windowMock = Object.assign({}, document.defaultView, {
+			global: undefined,
+			process: undefined,
+			document: document,
+			navigator: { userAgent: 'node.js' },
+			localStorage: storage,
+			sessionStorage: storage
+		})
+		windowMock.window = windowMock
+
+		env = evaluate.call(windowMock)
 	})
 
 	it('should detect detect', () => {
@@ -50,12 +58,10 @@ describe('in the browser', () => {
 	})
 
 	it('should not have global', () => {
-		let process
 		expect(env.has.global).to.be.false
 	})
 
 	it('should not have process', () => {
-		let global
 		expect(env.has.process).to.be.false
 	})
 })
